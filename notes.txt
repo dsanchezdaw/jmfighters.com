@@ -1,0 +1,42 @@
+<?php
+
+	function onSubmit(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "jmfighters";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		//si el numero de reservas es =< 10, ejecutar Insert
+		//else 
+		$sql = "SELECT * FROM booking where " . 'date' . " = " . $_POST["date"];
+		$result = $conn->query($sql);
+
+		if ($result->num_rows <= 10) {
+			$sql = "INSERT INTO booking (".'date'.", hour, name, dni)
+			VALUES (". $_POST["date"] .", ". $_POST["hour"] .", '". $_POST["name"] ."', '". $_POST["dni"] ."')";
+
+			if ($conn->query($sql) === TRUE) {
+				echo "<script>alert('Clase reservada con exito')</script>";
+			} else {
+				echo "<script>alert('Ha ocurrido un error al intentar hacer la reserva')</script>";
+			}
+
+		} else {
+			echo "<script>alert('Esa clase ya esta llena')</script>";
+		}
+
+
+
+		
+
+		$conn->close();
+	}
+				
+?>

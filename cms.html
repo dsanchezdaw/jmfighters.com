@@ -1,0 +1,990 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>JMFighters - cita previa</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- NAV -->
+    <div class="nav">
+        <div class="wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center">
+                        <p class="mb-0 location">
+                            <span class="fa fa-map-marker mr-2"></span> Calle Greco, nº 2, local 1, Magalluf, Calvia, 07181, Islas Baleares, Espa�a.
+                        </p>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-md-end">
+                        <div class="social-media">
+                            <p class="mb-0 d-flex">
+                                <a href="https://www.facebook.com/JMFIGHTERS" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                                <a href="https://www.instagram.com/jm_fighters/" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">JM Fighters</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><a href="booking.html" class="nav-link">Cita previa</a></li>
+                        <!--<li class='nav-item'><a href='fighters.html' class='nav-link'>Fighters</a></li>-->
+                        <li class="nav-item active" id="cmsList"><a href="cms.html" class="nav-link">Gestión</a></li>
+                        <li class='nav-item'><a class='nav-link' data-toggle='modal' data-target='#user_form'><span class="fa fa-user-circle"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- END nav -->
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-color: #1f1f1f;max-height:300px">
+        <div class="container">
+            <div class="row slider-text align-items-end" style="height:300px;">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <h1 class="mb-0 bread">Gestión de la página</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active booking" onclick="selectBookings()">Reservas</a>
+            </li>
+            <!--<li class="nav-item">
+                <a class="nav-link fighters" onclick="selectFighters()">Fighters</a>
+            </li>
+            <li class="nav-item">
+        <a class="nav-link album" onclick="selectGalery()">Galeria</a>
+    </li>-->
+            <li class="nav-item">
+                <a class="nav-link class" onclick="selectClass()">Clases</a>
+            </li>
+        </ul>
+
+        <section class="m-3">
+
+            <div class="container booking" style="display:block">
+                <form onsubmit="onBookingSearchClick()">
+                    <div class="row justify-content-between">
+                        <input type="text" name="date" class="form-control datepicker datepicker_cms col-3" id="date" autocomplete="off" required>
+                        <select name="hour" class="custom-select col-3" id="bookingHour">
+                        </select>
+                        <input type="submit" class="btn btn-primary col-3" value="ver">
+
+                    </div>
+                </form>
+                <ul class="list-group list-group-flush" id="bookingList">
+                </ul>
+            </div>
+
+            <div class="container fighters" style="display:none">
+                <div class="row">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#addFighter"><span class="fa fa-plus-circle"></span> Añadir</a>
+                </div>
+                <ul class="list-group list-group-flush" id="fightersList_cms">
+                </ul>
+            </div>
+
+            <div class="container album" style="display:none">
+                <div class="row">
+                    <a href="" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Añadir</a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p id="id">
+                            <h4>
+                                <span class="fa fa-address-card btn btn-primary" href=""></span>
+                                <span href="" class="btn btn-success fa fa-pencil-square-o"></span>
+                                <span href="" class="fa fa-trash btn btn-danger"></span>
+                                00/00/0000 - Nombre
+                            </h4>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="container class" style="display:none">
+                <div class="row">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addClass"><span class="fa fa-plus-circle"></span> Añadir</button>
+                </div>
+                <ul class="list-group list-group-flush" id="classList_cms">
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+                    <h2 class="footer-heading">JM Fighters</h2>
+                    <p>MUAY-THAI,K-1,BOXEO,MMA, BRAZILIAN JIU JITSU,CAPOEIRA.... ....Y MUCHO MAS!!!</p>
+                    <ul class="ftco-footer-social p-0">
+                        <li class="ftco-animate"><a href="https://www.facebook.com/JMFIGHTERS" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="https://www.instagram.com/jm_fighters/" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-4 pl-lg-5 mb-4 mb-md-0">
+                    <h2 class="footer-heading">Enlaces rápidos</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="py-2 d-block">Inicio</a></li>
+                        <li><a href="contacto.html" class="py-2 d-block">Contacto</a></li>
+                        <li><a href="booking.html" class="py-2 d-block">Cita previa</a></li>
+                        <li><a href="fighters.html" class="py-2 d-block">fighters</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+                    <h2 class="footer-heading">¿Alguna duda?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon fa fa-map"></span><span class="text">Calle Greco, nº 2, local 1, Magalluf, Calvia, 07181, Islas Baleares, España.</span></li>
+                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+34 650 82 73 97</span></a></li>
+                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">muaythai_jm@hotmail.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p class="copyright">
+                        Copyright &copy;2020 JM Fighters
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    <!-- Inicio de sesion -->
+    <div class="modal" id="user_form">
+        <div class="modal-dialog">
+            <div class="modal-content" id="session">
+                <form class="p-5 bg-light" method="POST" id="login">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Inicio de sesión</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="comment-form-wrap pt-5">
+                            <div class="form-group">
+                                <label for="name">Usuario</label>
+                                <input type="text" class="form-control" id="user" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dni">Contraseña</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Inicio de sesion</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script charset="UTF-8" src="js/main.js"></script>
+
+    <div id="scripts_cms"></div>
+    <div id="modals_cms"></div>
+
+    <!-- add class -->
+    <div class="modal" id="addClass">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!--action="addClass.php"-->
+                <form class="p-5 bg-light class" method="POST" id="form" enctype="multipart/form-data" name="addClass" onsubmit="onSubmitClass()">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Añadir clase</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="comment-form-wrap pt-5">
+                            <div class="form-group">
+                                <label for="name">Clase</label>
+                                <input type="text" class="form-control" id="name" placeholder="Clase" name="className" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Limite</label>
+                                <input type="number" class="form-control" id="pax" placeholder="Max." name="pax" required>
+                            </div>
+                            <!-- dias -->
+                            <div class="form-group">
+                                <label for="date">Dias</label><br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkL" value="1">
+                                    <label class="form-check-label" for="chkL">L</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkM" value="2">
+                                    <label class="form-check-label" for="chkM">M</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkX" value="3">
+                                    <label class="form-check-label" for="chkX">X</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkJ" value="4">
+                                    <label class="form-check-label" for="chkJ">J</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkV" value="5">
+                                    <label class="form-check-label" for="chkV">V</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkS" value="6">
+                                    <label class="form-check-label" for="chkS">S</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="chkD" value="7">
+                                    <label class="form-check-label" for="chkD">D</label>
+                                </div>
+                            </div>
+                            <!-- horas -->
+                            <div class="form-group time">
+                                <label for="date">Horas <a class="btn btn-light" onclick="addTime()"><span class="fa fa-plus-circle"></span></a></label><br />
+                                <input type="time" id="start" name="start1" required> <span> - </span><input type="time" id="end" name="end1" required>
+                            </div>
+                            <!-- imagen -->
+                            <div class="form-group logo">
+                                <label for="date">Foto</label><br />
+                                <input type="file" class="form-control-file" id="classLogo" name="logo" accept=".jpeg,.jpg,.png" required />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Añadir" />
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- add Fighter -->
+    <div class="modal" id="addFighter">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="p-5 bg-light class" method="POST" id="addFighterForm" enctype="multipart/form-data" name="addFighter">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Añadir combatiente</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="comment-form-wrap pt-5">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" class="form-control" id="fighterName" placeholder="Nombre" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Alias</label>
+                                <input type="text" class="form-control" id="fighterNickname" placeholder="Alias" name="nickname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Edad</label>
+                                <input type="number" class="form-control" id="fighterAge" name="age" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Peso (Kg)</label>
+                                <input type="number" class="form-control" id="fighterWeight" name="weight" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Combates ganados</label>
+                                <input type="number" class="form-control" id="fighterWin" name="win" value="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Combates perdidos</label>
+                                <input type="number" class="form-control" id="fighterLose" name="lose" value="0" required>
+                            </div>   
+                            <div class="form-group">
+                                <label for="name">Combates nulos</label>
+                                <input type="number" class="form-control" id="fighterNul" name="nul" value="0" required>
+                            </div>   
+                            <div class="form-group">
+                                <label for="name">Combates ganados por KO</label>
+                                <input type="number" class="form-control" id="fighterKo" name="ko" value="0" required>
+                            </div>                        
+                            <!-- imagen -->
+                            <div class="form-group logo">
+                                <label for="date">Foto</label><br />
+                                <input type="file" class="form-control-file" name="fighterImg" accept=".jpeg,.jpg,.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Añadir" />
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script charset="UTF-8">
+    var hoursNum = 1;
+    loadHours();
+
+    $('.datepicker_cms').datepicker({
+        language: 'es',
+        autoclose: true,
+        weekStart: 1,
+        format: 'dd-mm-yyyy'
+    });
+
+    function selectFighters() {
+        $("div.booking").hide();
+        $('div.album').hide();
+        $('div.fighters').show();
+        $('div.class').hide();
+
+        $('a.booking').removeClass('active');
+        $('a.album').removeClass('active');
+        $('a.fighters').addClass('active');
+        $('a.class').removeClass('active');
+
+        loadFighters();
+    };
+    
+    function selectGalery() {
+        $("div.booking").hide();
+        $('div.album').show();
+        $('div.fighters').hide();
+        $('div.class').hide();
+
+        $('a.booking').removeClass('active');
+        $('a.album').addClass('active');
+        $('a.fighters').removeClass('active');
+        $('a.class').removeClass('active');
+    };
+
+    function selectBookings() {
+        $("div.booking").show();
+        $('div.album').hide();
+        $('div.fighters').hide();
+        $('div.class').hide();
+
+        $('a.booking').addClass('active');
+        $('a.album').removeClass('active');
+        $('a.fighters').removeClass('active');
+        $('a.class').removeClass('active');
+    };
+
+    function selectClass() {
+        $("div.booking").hide();
+        $('div.album').hide();
+        $('div.fighters').hide();
+        $('div.class').show();
+
+        $('a.booking').removeClass('active');
+        $('a.album').removeClass('active');
+        $('a.fighters').removeClass('active');
+        $('a.class').addClass('active');
+
+       loadClassCms();
+    };
+
+    function addTime() {
+        this.hoursNum++;
+        $('div.time').append('<br/><input type = "time" id = "start" name = "start' + this.hoursNum + '"><span> - </span><input type="time" id="end" name="end' + this.hoursNum +'">');
+    };
+
+    function addTimeEd() {
+        this.hoursNum++;
+        $('div.timeEd').append('<br/><input type = "time" id = "start" name = "start' + this.hoursNum + '"><span> - </span><input type="time" id="end" name="end' + this.hoursNum +'">');
+    };
+
+    function onBookingSearchClick() {
+        event.preventDefault();
+		var date = $('#date').val();
+        var hour = $('#bookingHour').val().length == 0 ? null : $('#bookingHour').val();
+
+        jQuery.ajax({
+			type: "POST",
+			async: false,
+			url: 'functions.php',
+			dataType: 'json',
+			data: {functionName: 'getBookingsDay', date: date, hour: hour},
+            success: function (obj, textstatus) {
+                var $html = "";
+                for (var i = 0; i < obj['result'].length; i++) {
+                    $html = $html + '<li class="list-group-item"><p id="'+ i +'"><h6>'                            
+                    $html = $html + obj['result'][i].date + " - "
+                        + obj['result'][i].hour + " - "
+                        + obj['result'][i].class + " - "
+                        + obj['result'][i].dni + " - "
+                        + obj['result'][i].name;
+                    $html = $html + '</h6></p></li>'
+                }
+                $('#bookingList').html($html);
+				event.preventDefault();
+			},
+            error: function (xhr, status, error) {
+				alert("No se ha podido conectar.");
+				event.preventDefault();
+			}
+		});
+    };
+
+    function onSubmitClass() {
+        debugger;
+        var data = $('form.class').serializeArray().reduce(function (obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
+        var classDays = getDays(data);
+        var classHours = getHours(data);
+        var className = data['className'];
+        var paxes = data['pax'];
+        //var logo = $('input.form-control-file')[0].files[0];
+        var logo = $('#classLogo').prop('files')[0];
+        var form_data = new FormData();    
+        var functionName = 'addClass';
+        
+        form_data.append('functionName', functionName);
+        form_data.append('logo', logo);
+        form_data.append('className', className);
+        form_data.append('paxes', paxes);
+        form_data.append('days', classDays);
+        form_data.append('hours', classHours);
+
+        insertClass(form_data);
+        event.preventDefault();
+    };
+
+    function submitEditClass(id) {
+        debugger;
+        var data = $('form.edClass_'+id).serializeArray().reduce(function (obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
+        var classEditDays = getDays(data);
+        var classEditHours = getHours(data);
+        var classEditName = data['className'];
+        var editPaxes = data['pax'];
+        var editId = data['id'];
+        var logo = $('#classEdLogo_'+id).prop('files')[0];
+        var form_data = new FormData();    
+        var functionName = 'editClass';
+        
+        form_data.append('functionName', functionName);
+        form_data.append('logo', logo);
+        form_data.append('className', classEditName);
+        form_data.append('paxes', editPaxes);
+        form_data.append('days', classEditDays);
+        form_data.append('hours', classEditHours);
+        form_data.append('id', editId);
+        debugger;
+        editClass(form_data, editId);
+        event.preventDefault();
+    };
+
+    function getDays(data) {
+        var days = "";
+
+        if (!!data['chkL'])
+            days = days + data['chkL'] + ",";
+        if (!!data['chkM'])
+            days = days + data['chkM'] + ",";
+        if (!!data['chkX'])
+            days = days + data['chkX'] + ",";
+        if (!!data['chkJ'])
+            days = days + data['chkJ'] + ",";
+        if (!!data['chkV'])
+            days = days + data['chkV'] + ",";
+        if (!!data['chkS'])
+            days = days + data['chkS'] + ",";
+        if (!!data['chkD'])
+            days = days + data['chkD'] + ",0,";
+
+        return days.substring(0, days.length - 1);
+    };
+    
+    function getHours(data) {
+        var hours = "";
+        for (var i = 1; i <= this.hoursNum; i++) {
+            hours = hours + data['start' + i] + " - " + data['end' + i] + ",";
+        }
+
+        return hours.substring(0, hours.length - 1);;
+    };
+
+    function loadClassCms() {
+        jQuery.ajax({
+			type: "POST",
+			async: false,
+			url: 'functions.php',
+			dataType: 'json',
+			data: {functionName: 'getClass'},
+            success: function (obj) {
+                $html = "";
+                $modals = "";
+                $editModals_cms = "";
+                $viewModals_cms = "";
+                $script_cms = "<script>";
+                for (var i = 0; i < obj['result'].length; i++) {
+                    $html = $html + '<li class="list-group-item">'
+                        + '<p>'
+                        + '<h4>'
+                        + '<span data-toggle="modal" data-target="#modalClassCms_' + obj['result'][i]['id'] + '" class="fa fa-address-card btn btn-primary"></span>'
+                        + '<span data-toggle="modal" data-target="#editClassCms_' + obj['result'][i]['id'] + '" class="fa fa-pencil btn btn-success"></span>'
+                        + '<span onclick="removeClass_' + obj['result'][i]['id'] + '()" class="fa fa-trash btn btn-danger"></span> '
+                        + (i+1) + ' - ' + obj['result'][i]['name']
+                        + '</h4>'
+                        + '</p>'
+                        + '</li>';
+
+                    $viewModals_cms = $viewModals_cms + loadViewClassModalView(obj['result'][i]);
+                    $editModals_cms = $editModals_cms + loadEditClassModalView(obj['result'][i]);
+
+                    $script_cms = $script_cms + ''
+                        + 'function removeClass_' + obj['result'][i]['id'] + '(){'
+                            + 'if(confirm("¿Deseas eliminar la clase de ' + obj['result'][i]['name'] + '?")){'
+                            + 'removeClass(' + parseInt(obj['result'][i]['id']) + ');'
+                            + 'loadClassCms();'
+                            + '}'
+                        + '};'
+                        + 'function onSubmitEditClass_' + obj['result'][i]['id'] + '(){'
+                        + 'debugger;submitEditClass(' + obj['result'][i]['id'] + ');'
+                        + '};'
+                }
+                $script_cms = $script_cms + '<\/script>';
+                $modals = $viewModals_cms + $editModals_cms;
+                $('#classList_cms').html($html);
+                $('#scripts_cms').html($script_cms);
+                $('#modals_cms').html($modals);
+
+                event.preventDefault();
+			}
+		});
+    }
+
+    function insertClass(form_data) {
+        jQuery.ajax({
+            type: "POST",
+            async: false,
+            url: 'functions.php',
+            dataType: 'json',
+            contentType: false, 
+            processData: false,
+            data: form_data,
+            success: function (obj, textstatus) {
+                if (!('error' in obj)) {
+                    alert("Clase creado con exito.");
+
+                    $('form')[1].reset();
+
+                    $('div#addClass').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    loadClassCms();
+                } else {
+                    alert("No se ha podido crear la clase.");
+                }
+            }
+        });
+    };
+
+    function editClass(form_data, id) {
+        $id = id;
+        jQuery.ajax({
+            type: "POST",
+            async: false,
+            url: 'functions.php',
+            dataType: 'json',
+            contentType: false, 
+            processData: false,
+            data: form_data,
+            success: function (obj, textstatus) {
+                if (!('error' in obj)) {
+                    alert("Clase editada con exito.");
+
+                    $('form')[1].reset();
+
+                    $('div#editClassCms_' + $id).modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    loadClassCms();
+                } else {
+                    alert("No se ha podido crear la clase.");
+                }
+            }
+        });
+    };
+
+	$('#login').submit(function(){
+		$user = $('#user').val();
+		$pass = $('#password').val();
+
+		$passEncoded = CryptoJS.MD5($pass).toString();
+
+		jQuery.ajax({
+			type: "POST",
+			async: false,
+			url: 'functions.php',
+			dataType: 'json',
+			data: {functionName: 'getUser', user: $user, pass: $passEncoded},
+
+			success: function (obj, textstatus) {
+				if(!obj['userExist']){
+					alert('Este usuario no existe');
+					event.preventDefault();
+				}
+			},
+			error: function(xhr,status,error){
+				alert("Ha ocurrido un error. No se ha podido iniciar sesión.");
+				event.preventDefault();
+			}
+		});
+	});
+
+	//get user session
+	$.ajax({
+		type: "POST",
+		async: false,
+		url: 'functions.php',
+		dataType: 'json',
+		data: {functionName: 'getUserSession'},
+
+		success: function (obj, textstatus) {
+			this.$user = obj['user'];
+
+            if (!this.$user || !this.$user[0]['rol'] == 'admin') {
+                window.location.replace("/jm/index.html")
+            }		
+		}
+    });    
+
+    $user = null;
+    //loadFighters();
+    getUserSession();
+
+    $('#login').submit(function () {
+        onSubmitLogin();
+    });
+
+    function loadViewClassModalView(obj) {
+        $modals = '';
+        $modals = $modals + '<div class="modal" id="modalClassCms_' + obj['id'] + '">'
+            + '<div class="modal-dialog">'
+            + '<div class="modal-content">'
+            + '<div class="modal-header">'
+            + '<h2 class="modal-title">Vista</h2>'
+            + '<button type="button" class="close" data-dismiss="modal">&times;</button>'
+            + '</div>'
+            + '<div class="modal-body">'
+            + '<div class="comment-form-wrap pt-5">'
+            + '<div class="form-group">'
+            + '<h4><b>Clase: </b>' + obj['name'] + '</h4>'
+            + '</div>'
+            + '<div class="form-group">'
+            + '<h4><b>Límite de personas: </b>' + obj['pax'] + '</h4>'
+            + '</div>'
+            + '<div class="form-group">'
+            + '<h4><b>Dias: </b></h4><p>';
+        $daysCms = obj['days'].split(",");
+        $totalDays = '';
+        for (var i = 0; i < $daysCms['length']; i++) {
+            $totalDays = $totalDays + getDayOfWeek($daysCms[i]) + ', ';
+        }
+        $modals = $modals + $totalDays.substring(0, $totalDays.length - 2) + '</h4>'
+            + '</p></div>'
+            + '<div class="form-group">'
+            + '<h4><b>Horarios:</b></h4><p>';
+        $hoursCms = obj['hours'].split(',');
+        for (var i = 0; i < $hoursCms['length']; i++) {
+            $modals = $modals + $hoursCms[i] + '</br>';
+        };
+        $modals = $modals + '</p></div>'
+            + '</div>'
+            + '</div>'
+            + '<div class="modal-footer">'
+            + '<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '</div>';
+
+        return $modals;
+    };
+
+    function loadEditClassModalView(obj) {
+        days = obj['days'].split(',');
+        $hours = obj['hours'].split(',');
+        $hoursStart = [];
+        $hoursEnd = [];
+        $l = days.includes("1") ? "checked" : "";
+        $m = days.includes("2") ? "checked" : "";
+        $x = days.includes("3") ? "checked" : "";
+        $j = days.includes("4") ? "checked" : "";
+        $v = days.includes("5") ? "checked" : "";
+        $s = days.includes("6") ? "checked" : "";
+        $d = days.includes("7") ? "checked" : "";
+        debugger;
+        for (var i = 0; i < $hours['length']; i++) {
+            $hoursStart[i] = $hours[i].substring(0, 5);
+            $hoursEnd[i] = $hours[i].substring(8);
+        }
+
+        $modal = '<div class="modal" id="editClassCms_' + obj['id'] + '">'
+                + '<div class="modal-dialog" >'
+                    + '<div class="modal-content">'
+            + '<form class="p-5 bg-light edClass_' + obj['id'] + '" method="POST" id="form" enctype="multipart/form-data" name="editClass" onsubmit="onSubmitEditClass_' + obj['id'] + '()">'
+                        + '<div class="modal-header">'
+                            + '<h4 class="modal-title">Editar clase</h4>'
+                            + '<button type="button" class="close" data-dismiss="modal">&times;</button>'
+                        + '</div>'
+                        + '<div class="modal-body">'
+                            + '<div class="comment-form-wrap pt-5">'
+                                + '<input type="text" name="id" value="' + obj['id'] + '" hidden>'
+                                + '<div class="form-group">'
+                                    + '<label for= "name" > Clase</label >'
+                                    + '<input type="text" class="form-control" id="nameEd" value="' + obj['name'] + '" name="className" required>'
+                                + '</div>'
+                                + '<div class="form-group">'
+                                    + '<label for= "name"> Limite</label>'
+                                    + '<input type="number" class="form-control" id="paxEd" value="' + parseInt(obj['pax']) + '" name="pax" required>'
+                                + '</div>'
+                                + '<div class="form-group">'
+                                    + '<label for="date">Dias</label><br />'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkL" value="1" ' + $l + '>'
+                                        + '<label class="form-check-label" for="chkL">L</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkM" value="2" ' + $m + '>'
+                                        + '<label class="form-check-label" for="chkM">M</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkX" value="3" ' + $x + '>'
+                                        + '<label class="form-check-label" for="chkX">X</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkJ" value="4" ' + $j + '>'
+                                        + '<label class="form-check-label" for="chkJ">J</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkV" value="5" ' + $v + '>'
+                                        + '<label class="form-check-label" for="chkV">V</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkS" value="6" ' + $s + '>'
+                                        + '<label class="form-check-label" for="chkS">S</label>'
+                                    + '</div>'
+                                    + '<div class="form-check form-check-inline">'
+                                        + '<input class="form-check-input day" type="checkbox" name="chkD" value="7" ' + $d + '>'
+                                        + '<label class="form-check-label" for="chkD">D</label>'
+                                    + '</div>'
+                                + '</div>'
+                                + '<div class="form-group timeEd">'
+                                    + '<label for= "date" > Horas <a class= "btn btn-light" onclick = "addTimeEd()" > <span class="fa fa-plus-circle"></span></a ></label ><br />';
+        for (var i = 0; i < $hours['length']; i++) {
+            
+            $modal = $modal + '<input type="time" id="start" name="start'+ (i+1) +'" value="' + $hoursStart[i] + '"> <span> - </span><input type="time" id="end" name="end'+ (i+1) +'" value="' + $hoursEnd[i] + '" required>';
+        }
+        $modal = $modal         + '</div>'
+                                + '<div class="form-group logo">'
+                                    + '<label for= "date" > Foto</label ><br />'
+                                    + '<input type="file" class="form-control-file" id="classEdLogo_' + obj['id'] + '" name="logoEd" accept=".jpeg,.jpg,.png"/>'
+                                    + '<div class="ministry"><div class="text p-4">Imagen actual:</div><div class="img" style="background-image: url(\'' + obj['logo'] + '\');"></div></div>'
+                                + '</div >'
+                            + '</div>'
+                        + '</div >'
+                        + '<div class="modal-footer">'
+                            + '<input type = "submit" class="btn btn-primary" value = "Modificar" />'
+                            + '<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>'
+                        + '</div >'
+                    + '</form >'
+                + '</div >'
+            + '</div >'
+        + '</div >';
+
+        return $modal;
+    };
+
+    function loadFighterModalView(obj) {
+        $modal = '';
+    //todo
+
+        return $modal;
+    };
+
+    function loadHours() {
+        jQuery.ajax({
+            type: "POST",
+            async: false,
+            url: 'functions.php',
+            dataType: 'json',
+            data: { functionName: 'getHours'},
+
+            success: function (obj, textstatus) {
+                $hoursBookings = '<option value=""> - </option>';
+                for (var i = 0; i < obj["hours"]['length']; i++) {
+                    $hoursBookings = $hoursBookings + '<option value="' + obj['hours'][i]['hour'] + '">' + obj['hours'][i]['hour'] + '</option>';
+                }
+                $('#bookingHour').html($hoursBookings);
+                return;
+            }
+        });
+    };
+
+    function loadFighters() {
+        //fightersList_cms
+        //todo
+        jQuery.ajax({
+			type: "POST",
+			async: false,
+			url: 'functions.php',
+			dataType: 'json',
+			data: {functionName: 'getFighters'},
+            success: function (obj) {
+                var $html = "";
+                var $modals_cms = "";
+                var $script_cms = "<script>";
+
+                for (var i = 0; i < obj['result'].length; i++) {
+                    $html = $html + '<li class="list-group-item">'
+                        + '<p>'
+                        + '<h4>'
+                        + '<span data-toggle="modal" data-target="#modalFighterCms_' + obj['result'][i]['id'] + '" onclick="viewFighter_' + obj['result'][i]['id'] + '()" class="fa fa-address-card btn btn-primary"></span>'
+                        + '<span onclick="removeFighter_' + obj['result'][i]['id'] + '()" class="fa fa-trash btn btn-danger"></span> '
+                        + (i+1) + ' - ' + obj['result'][i]['name'] + ' - ' + obj['result'][i]['nick']
+                        + '</h4>'
+                        + '</p>'
+                        + '</li>';
+                    //todo
+                    $modals_cms = loadFighterModalView(obj['result'][i]);
+
+                    $script_cms = $script_cms + ''
+                        + 'function removeClass_' + obj['result'][i]['id'] + '(){'
+                            + 'if(confirm("¿Deseas eliminar a ' + obj['result'][i]['name'] + '?")){'
+                            + 'removeFighter(' + parseInt(obj['result'][i]['id']) + ');'
+                            + 'loadFightersCms();'
+                            + '}'
+                        + '};'
+                }
+                $script_cms = $script_cms + '<\/script>';
+
+                $('#fightersList_cms').html($html);
+                $('#scripts_cms').html($script_cms);
+                $('#modals_cms').html($modals_cms);
+
+                event.preventDefault();
+			}
+		});
+    };
+
+    $('#addFighterForm').submit(function(){
+        $fighterName    = $('#fighterName').val();
+        $fighterNick    = $('#fighterNickname').val();
+        $fighterAge     = parseInt($('#fighterAge').val());
+        $fighterWeight  = parseInt($('#fighterWeight').val());
+        $fighterWin     = parseInt($('#fighterWin').val());
+        $fighterLose    = parseInt($('#fighterLose').val());
+        $fighterNul     = parseInt($('#fighterNul').val());
+        $fighterKo      = parseInt($('#fighterKo').val());
+        //$fighterImg     = $('#fighterImg').val();
+
+        jQuery.ajax({
+            url: 'functions.php',
+            type: "POST",
+            dataType: 'json',
+            data: {
+                functionName: 'addFighter',
+                name: $fighterName,
+                nick: $fighterNick,
+                age: $fighterAge,
+                weight: $fighterWeight,
+                win: $fighterWin,
+                lose: $fighterLose,
+                nul: $fighterNul,
+                ko: $fighterKo/*,
+                picture: $fighterImg*/
+            },
+            success: function (obj, textstatus) {
+                if (!('error' in obj)) {
+                    alert("Fighter añadido.");
+                
+                    event.preventDefault();
+                
+                    $('div#addFighter').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    onFightersLoad();
+                } else {
+                    alert("Ha ocurrido un error al intentar añadir un combatiente.");
+                } 
+                return;
+            }
+        });
+
+    });
+</script>
+</html>
+                        
+                        <!-- horas -->
+                        
+                        <!-- imagen -->
+                        
+                    
+                <!-- Modal footer -->
+                
